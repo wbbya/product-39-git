@@ -64,12 +64,17 @@ export default {
             data: this.form
           }).then(({ data: { data, meta } }) => {
             // console.log(res);
-            console.log(data, meta);
+            // console.log(data, meta);
             // if (res.data.meta.status == 200) {
             //   console.log(res.data.meta.msg);
             // }
             if (meta.status == 200) {
-              this.$router.push("./home");
+              // 登陆成功后服务器会返回一个token
+              // 我们需要将这个token保存到本地
+              // 保存到localstorage中就可以
+              localStorage.setItem("token", data.token);
+              this.$router.push("/home");
+              // console.log(11);
             }
           });
         } else {
